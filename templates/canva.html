@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-do_App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        /* Style for the drawing area */
+        #drawingArea {
+          border: 1px solid #ccc;
+          cursor: crosshair; /* Change cursor to crosshair */
+        }
+      
+        /* Style for the reset button */
+        #resetButton {
+          margin-top: 10px;
+        }
+      </style>
+      </head>
+
+      <body class=" mainbody bg-gray-100">
+        <nav class="background_nav">
+            <ul>
+              <li>
+                <h1><a href="/">Todo-app</a></h1>
+              </li>
+                <li>
+                  <h1><a href="/">Home</a></h1>
+                </li>
+                <li>
+                  <h1><a href="/about">About</a></h1>
+                </li>
+                <li>
+                  <h1><a href="/sign_in">sign-in</a></h1>
+                </li>
+                <li>
+                  <h1><a href="/login">Login</a></h1>
+                </li>
+                <li>
+                  <h1><a href="/canva">canva</a></h1>
+                </li>
+              </ul>
+        </nav>
+
+      <canvas id="drawingArea" width="600" height="400"></canvas>
+      <button id="resetButton">Reset Drawing</button>
+    
+<script src="{{ url_for('static', filename='js/script.js')}}"></script>
+</body>
+</html>
