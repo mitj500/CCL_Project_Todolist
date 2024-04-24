@@ -4,8 +4,8 @@ import mysql.connector
 from mysql.connector import Error
 
 
-app = Flask(__name__)
-app.config['SECRET_KEY'] = 'afdglnalnheognohe'
+application= Flask(__name__)
+application.config['SECRET_KEY'] = 'afdglnalnheognohe'
 
 # Establish a global database connection
 mydb = mysql.connector.connect(
@@ -17,7 +17,7 @@ mydb = mysql.connector.connect(
 )
 cursor = mydb.cursor()
 
-@app.route("/", methods=['GET', 'POST'])
+@application.route("/", methods=['GET', 'POST'])
 def index():
     if 'user' not in session:
         # If user is not in session, redirect to login
@@ -46,7 +46,7 @@ def index():
 
     return render_template('home.html', todos=todos1, userid = userid)
 
-@app.route("/delete", methods=['POST'])
+@application.route("/delete", methods=['POST'])
 def delete():
     if request.method == 'POST':
         todo_id = request.form['todo_id']
@@ -58,7 +58,7 @@ def delete():
 
         return redirect(url_for('index'))
 
-@app.route('/signin', methods=['GET', 'POST'])
+@application.route('/signin', methods=['GET', 'POST'])
 def signin():
     if request.method == 'POST':
         # Retrieve form data
@@ -94,11 +94,11 @@ def signin():
 
     return render_template("signin.html")
 
-@app.route('/success')
+@application.route('/success')
 def success():
     return 'Sign-in successful!'
 
-@app.route('/about')
+@application.route('/about')
 def about_page():
     if 'user' not in session:
         # If user is not in session, redirect to login
@@ -108,7 +108,7 @@ def about_page():
     
     return render_template("about.html", userid = userid)
 
-@app.route('/login', methods=['GET', 'POST'])
+@application.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         username = request.form.get('username')
@@ -136,19 +136,19 @@ def login():
     # If request method is not POST, render the login form
     return render_template('login.html')
 
-@app.route('/sign_in')
+@application.route('/sign_in')
 def sign_in():
     return render_template("signin.html")
 
-@app.route('/logout',methods=['GET','POST'])
+@application.route('/logout',methods=['GET','POST'])
 def logout():
     if 'user' in session:
         session.pop("user",None)
         return redirect(url_for('login'))
 
-@app.route('/canva')
+@application.route('/canva')
 def canva():
     return render_template("canva.html")
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    application.run(debug=True)
